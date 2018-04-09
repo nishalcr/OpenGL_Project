@@ -1,46 +1,32 @@
-import pygame
-from OpenGL.GL import glBegin, GL_LINES, glVertex3fv, glEnd, glTranslatef, glRotatef, glClear, GL_COLOR_BUFFER_BIT, \
-    GL_DEPTH_BUFFER_BIT, GL_LINE, glVertex2fv, glVertex2d
-from OpenGL.raw.GLU import gluPerspective
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
 
+#Creating the view type
+def init():
+    glClearColor(1.0,0.0,1.0,1.0)
+    glMatrixMode(GL_PROJECTION)
+    gluOrtho2D(0.0,200.0,0.0,150.0)
 
-vertices=(
-    (1,-1),
-    (1,1),
-    (-1,1),
-    (-1,-1)
-)
-
-edges=(
-    (0,1),
-    (0,3),
-    (2,1),
-    (2,3)
-)
+#displaying the square
 def square():
-    glBegin(GL_LINE)
-    for edge in edges:
-        for vertice in edge:
-            glVertex2fv(vertices[vertice])
-
+    glClear(GL_COLOR_BUFFER_BIT)
+    glColor3f(0.0,0.4,0.2)
+    glBegin(GL_POLYGON)
+    glVertex2i(50,50)
+    glVertex2i(80,50)
+    glVertex2i(80,80)
+    glVertex2i(50,80)
     glEnd()
+    glFlush()
 
-
-def main():
-    pygame.init()
-    display = (800,600)
-    pygame.display.set_mode(display, pygame.DOUBLEBUF | pygame.OPENGL)
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-        square()
-        pygame.display.flip()
-        pygame.time.wait(10)
-
-
-main()
+#main function
+if __name__ == "__main__":
+    glutInit(sys.argv)
+    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB)
+    glutInitWindowPosition(50,100)
+    glutInitWindowSize(400,300)
+    glutCreateWindow(b'Square')
+    init()
+    glutDisplayFunc(square)
+    glutMainLoop()
