@@ -16,40 +16,48 @@ def init():
 #displaying the cube
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    glClearColor(1.0,1.0,1.0,1.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
-    glTranslatef(-8.0,5.0,-25.0)#View changes of the cube can be done here
+    glTranslatef(0.0,0.0,-20.0)#View changes of the cube can be done here
+    #glRotate(-90.0,0.0,1.0,0.0)
     glBegin(GL_QUADS)
+    #TOP
     glColor3f(0.0,1.0,0.0)# Green
     glVertex3f(1.0,1.0,-1.0)
     glVertex3f(-1.0,1.0,-1.0)
     glVertex3f(-1.0,1.0,1.0)
     glVertex3f(1.0,1.0,1.0)
 
+    #BOTTOM
     glColor3f(1.0, 0.0, 0.0)  # RED
     glVertex3f(1.0,-1.0,1.0)
     glVertex3f(-1.0,-1.0,1.0)
     glVertex3f(-1.0,-1.0,-1.0)
     glVertex3f(1.0,-1.0,-1.0)
 
+    #FRONT
     glColor3f(0.0, 0.0, 1.0)  # BLUE
     glVertex3f(1.0, 1.0,1.0)
     glVertex3f(-1.0, 1.0,1.0)
     glVertex3f(-1.0,-1.0, 1.0)
     glVertex3f(1.0,-1.0,1.0)
 
+    #BACK
     glColor3f(1.0,0.5, 0.0)  # ORANGE
     glVertex3f(1.0,-1.0, -1.0)
     glVertex3f(-1.0,-1.0, -1.0)
     glVertex3f(-1.0, 1.0,-1.0)
     glVertex3f(1.0, 1.0,-1.0)
 
+    #LEFT
     glColor3f(1.0, 1.0, 0.0)  #YELLOW
     glVertex3f(-1.0, 1.0, 1.0)
     glVertex3f(-1.0, 1.0, -1.0)
     glVertex3f(-1.0,-1.0,-1.0)
     glVertex3f(-1.0,-1.0, 1.0)
 
+    #RIGHT
     glColor3f(1.0, 1.0, 1.0)  # Green
     glVertex3f(1.0, 1.0, -1.0)
     glVertex3f(1.0, 1.0, 1.0)
