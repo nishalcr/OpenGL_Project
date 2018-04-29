@@ -127,7 +127,7 @@ def add_plane():
     for i in range(MAX_PLANES):
         if (planes[i].speed == 0.0):
             planes[i].red, planes[i].green, planes[i].blue = choice(rgblist)
-            planes[i].speed = (float(randint(0, 19)) * 0.001) + 0.02
+            planes[i].speed = (float(randint(0, 0)) * 0.001) + 0.02
             if (getrandbits(32) & 0x1):
                 planes[i].speed *= -1
             planes[i].theta = float(randint(0, 256)) * 0.1111

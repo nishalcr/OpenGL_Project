@@ -3,7 +3,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 import sys
 
-VOID, ADD_PLANE, REMOVE_PLANE,COLOR, MOTION_ON, MOTION_OFF, QUIT = list(range(7))
+VOID, CLEAR,ADD_PLANE, REMOVE_PLANE,COLOR, MOTION_ON, MOTION_OFF, QUIT = list(range(8))
 VOID, RED, GREEN,BLUE =list(range(4))
 
 def init():
@@ -116,6 +116,22 @@ def add_plane():
 
     return
 
+def createmenu():
+    submenuid = glutCreateMenu(color)
+    glutAddMenuEntry("Red", RED)
+    glutAddMenuEntry("Blue", BLUE)
+    glutAddMenuEntry("Green", GREEN)
+
+    menu_id = glutCreateMenu(menu)
+    glutAddMenuEntry("Clear",CLEAR)
+    glutAddMenuEntry("Add Cube", ADD_PLANE)
+    glutAddMenuEntry("Remove plane", REMOVE_PLANE)
+    glutAddSubMenu("Background", submenuid)
+    glutAddMenuEntry("Motion", MOTION_ON)
+    glutAddMenuEntry("Quit", QUIT)
+    glutAttachMenu(GLUT_RIGHT_BUTTON)
+
+
 def remove_plane():
     return 0
 
@@ -133,6 +149,8 @@ def color(item):
     colordict[item]()
     return 0
 
+def clear():
+    return
 
 def red():
     glClearColor(1,0,0,1)
@@ -149,7 +167,8 @@ colordict={RED:red,
            GREEN:green,
            BLUE:blue}
 
-menudict = {ADD_PLANE: add_plane,
+menudict = {CLEAR:clear,
+            ADD_PLANE: add_plane,
             REMOVE_PLANE: remove_plane,
             COLOR:color,
             MOTION_ON: domotion_on,
@@ -177,22 +196,7 @@ if __name__=="__main__":
     glutInitWindowSize(640, 480)
     glutCreateWindow(b'Square')
     glutDisplayFunc(square)
-
-    submenuid = glutCreateMenu(color)
-    glutAddMenuEntry("Red",RED)
-    glutAddMenuEntry("Blue", BLUE)
-    glutAddMenuEntry("Green", GREEN)
-
-    menu_id=glutCreateMenu(menu)
-    glutAddMenuEntry("Add Cube", ADD_PLANE)
-    glutAddMenuEntry("Remove plane", REMOVE_PLANE)
-    glutAddSubMenu("Background",submenuid)
-    glutAddMenuEntry("Motion", MOTION_ON)
-    glutAddMenuEntry("Quit", QUIT)
-    glutAttachMenu(GLUT_RIGHT_BUTTON)
-
-
-
     glutReshapeFunc(reshape)
+    createmenu()
     init()
     glutMainLoop()

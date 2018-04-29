@@ -1,14 +1,20 @@
-from OpenGL.GL import *
-# from OpenGL.GLU import *
-from OpenGL.GLUT import *
-import sys
+try:
+  from OpenGL.GLUT import *
+  from OpenGL.GL import *
+  from OpenGL.GLU import *
+except:
+  print ('Fehler: PyOpenGL nicht intalliert !!')
+  sys.exit(  )
+
+
+
 
 
 def draw_text(x, y, z, text, r, g, b):
     glColor3f(r, g, b)
     glRasterPos3f(x, y, z)
     for ch in text:
-        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, ord(ch))
+        glutBitmapString(GLUT_BITMAP_HELVETICA_18, ord(ch))
 
 
 def my_display():
