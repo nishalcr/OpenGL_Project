@@ -6,6 +6,9 @@ import sys
 VOID, CLEAR,ADD_PLANE, REMOVE_PLANE,COLOR, MOTION_ON, MOTION_OFF, QUIT = list(range(8))
 VOID, RED, GREEN,BLUE =list(range(4))
 
+PROMPT = ("Press keys '1' - '0' to start callbacks",
+          "Press ESCAPE to exit.")
+
 def init():
     glClearColor(0.0, 0.0, 0.0, 0.0)  # Set background color to black and opaque
     glClearDepth(1.0)  # Set background depth to farthest
@@ -13,6 +16,14 @@ def init():
 
 def square():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    w = float(glutGet(GLUT_WINDOW_WIDTH))
+    h = float(glutGet(GLUT_WINDOW_HEIGHT))
+    y = 25.0
+    for s in PROMPT:
+        glRasterPos(40.0, y)
+        y += 30.0
+        for c in s:
+            glutBitmapCharacter(GLUT_BITMAP_8_BY_13, ord(c))
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     glTranslatef(0.0,0.0,-20.0)#View changes of the cube can be done here
@@ -154,14 +165,18 @@ def clear():
 
 def red():
     glClearColor(1,0,0,1)
+    glutPostRedisplay()
     return
 
 def blue():
     glClearColor(0,0,1,1)
+    glutPostRedisplay()
     return
 
 def green():
     glClearColor(0,1,0,1)
+    glutPostRedisplay()
+    return
 
 colordict={RED:red,
            GREEN:green,
