@@ -118,7 +118,7 @@ def loadImage():
         ix, iy = img.size
     #ix,iy = image.size
      #= image.size[1]
-    image = image.tobytes("raw", "RGBX", 0, -1)
+    image = Image.open("tex.jpg").tobytes("raw", "RGBX", 0, -1)
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
     glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
