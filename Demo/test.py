@@ -1,9 +1,8 @@
 import sys
 from OpenGL.GLUT import *
 from OpenGL.GL import *
-from OpenGL._bytes import as_8_bit
 
-ESCAPE = as_8_bit('\033')
+ESCAPE = '\033'
 
 PROMPT = ("Press keys '1' - '0' to start callbacks",
           "Press ESCAPE to exit.")
@@ -83,9 +82,10 @@ def main():
     glutInit([])
     glutInitWindowSize(640, 480)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE)
-    glutCreateWindow(b"glutTimerFunc test case")
+    glutCreateWindow("glutTimerFunc test case")
     glutDisplayFunc(display)
     glutKeyboardFunc(keyboard)
     glutMainLoop()
+
 
 main()
